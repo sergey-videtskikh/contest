@@ -6,7 +6,7 @@ import java.util.function.BiPredicate;
 
 public class FirstContestSecondSolution {
     public static void main(String[] args) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/contest1/example1.txt"));
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/contest1/example2.txt"));
              PrintWriter bw = new PrintWriter(new OutputStreamWriter(System.out))) {
             String s = br.readLine();
             String[] s1 = s.split(" ");
@@ -15,7 +15,7 @@ public class FirstContestSecondSolution {
             int actionNumbers = Integer.parseInt(s1[2]); //Q
 
             int[] resetServersCount = new int[dataCenterNumbers];
-            int[][] runningServers = instantiateDataCenter(dataCenterNumbers, serversNumber);
+            int[][] runningServers = new int[dataCenterNumbers][serversNumber]; //inversed values of server state; 0 - disable; 1 - enabled
             int[] ra = new int[dataCenterNumbers];
 
             for (int i = 0; i < actionNumbers; i++) {
@@ -26,15 +26,15 @@ public class FirstContestSecondSolution {
                         int r = Integer.parseInt(s2[1]);
                         resetServersCount[r - 1] += 1;
                         ra[r - 1] = resetServersCount[r - 1] * serversNumber;
-                        resetDataCenter(runningServers, r);
+                        runningServers[r - 1] = new int[serversNumber];
                     }
                     case DISABLE -> {
                         int dN = Integer.parseInt(s2[1]);
                         int dM = Integer.parseInt(s2[2]);
-                        if (runningServers[dN - 1][dM - 1] == 1 && ra[dN - 1] != 0) {
+                        if (runningServers[dN - 1][dM - 1] == 0 && ra[dN - 1] != 0) {
                             ra[dN - 1] = ra[dN - 1] - resetServersCount[dN - 1];
                         }
-                        runningServers[dN - 1][dM - 1] = 0;
+                        runningServers[dN - 1][dM - 1] = 1;
                     }
                     case GETMAX -> bw.println(getMaxIndex(ra) + 1);
                     case GETMIN -> bw.println(getMinIndex(ra) + 1);
@@ -64,18 +64,6 @@ public class FirstContestSecondSolution {
             }
         }
         return maxOrMinIndex;
-    }
-
-    private static int[][] instantiateDataCenter(int n, int m) {
-        int[][] arr = new int[n][m];
-        for (int i = 0; i < n; i++) {
-            Arrays.fill(arr[i], 1);
-        }
-        return arr;
-    }
-
-    private static void resetDataCenter(int[][] arr, int r) {
-        Arrays.fill(arr[r - 1], 1);
     }
 
     enum Action {
