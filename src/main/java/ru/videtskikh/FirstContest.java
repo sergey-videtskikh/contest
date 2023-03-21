@@ -7,7 +7,7 @@ import java.util.function.BiPredicate;
 public class FirstContest {
     public static void main(String[] args) {
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/contest1/example2.txt"));
-             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
+             PrintWriter bw = new PrintWriter(new OutputStreamWriter(System.out))) {
             String s = br.readLine();
             String[] s1 = s.split(" ");
             int dataCenterNumbers = Integer.parseInt(s1[0]); //N
@@ -17,9 +17,7 @@ public class FirstContest {
             int[] resetServersCount = new int[dataCenterNumbers];
             int[][] runningServers = instantiateDataCenter(dataCenterNumbers, serversNumber);
 
-            for (
-                    int i = 0;
-                    i < actionNumbers; i++) {
+            for (int i = 0; i < actionNumbers; i++) {
                 s = br.readLine();
                 String[] s2 = s.split(" ");
                 switch (Action.valueOf(s2[0])) {
@@ -35,11 +33,11 @@ public class FirstContest {
                     }
                     case GETMAX -> {
                         int max = getMax(runningServers, resetServersCount);
-                        bw.write(max + "\n");
+                        bw.println(max);
                     }
                     case GETMIN -> {
                         int min = getMin(runningServers, resetServersCount);
-                        bw.write(min + "\n");
+                        bw.println(min);
                     }
                 }
             }
@@ -58,8 +56,7 @@ public class FirstContest {
         return getByBiFunction(runningServers, resetServersCount, min, (a, b) -> a < b);
     }
 
-    private static int getByBiFunction(int[][] runningServers, int[] resetServersCount, int maxOrMinElement,
-                                       BiPredicate<Integer, Integer> predicate) {
+    private static int getByBiFunction(int[][] runningServers, int[] resetServersCount, int maxOrMinElement, BiPredicate<Integer, Integer> predicate) {
         int maxOrMinRaDataCenter = 1;
         for (int i = 0; i < runningServers.length; i++) {
             int ra = getRa(runningServers, resetServersCount, i);
@@ -98,9 +95,6 @@ public class FirstContest {
     }
 
     enum Action {
-        RESET,
-        DISABLE,
-        GETMAX,
-        GETMIN
+        RESET, DISABLE, GETMAX, GETMIN
     }
 }
