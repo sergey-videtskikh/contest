@@ -2,12 +2,15 @@ package ru.videtskikh;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.function.BiPredicate;
 
 public class FirstContest {
     public static void main(String[] args) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/contest1/example2.txt"));
-             PrintWriter bw = new PrintWriter(new OutputStreamWriter(System.out))) {
+        Date start = new Date();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/contest1/example3-n1000-m1000.txt"));
+//             PrintWriter bw = new PrintWriter(new OutputStreamWriter(System.out))) {
+             PrintWriter bw = new PrintWriter(new FileWriter("src/main/resources/contest1/example3-out.txt"))) {
             String s = br.readLine();
             String[] s1 = s.split(" ");
             int dataCenterNumbers = Integer.parseInt(s1[0]); //N
@@ -41,9 +44,11 @@ public class FirstContest {
                     }
                 }
             }
-        } catch (IOException ex) {
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
+        Date end = new Date();
+        System.out.println(end.getTime() - start.getTime());
     }
 
     private static int getMax(int[][] runningServers, int[] resetServersCount) {
