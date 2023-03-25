@@ -1,16 +1,18 @@
-package ru.videtskikh;
+package ru.videtskikh.contest.first;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.function.BiPredicate;
 
-public class FirstContest {
+public class SolutionPlainHeavy implements Solution {
+
     public static void main(String[] args) {
-        Date start = new Date();
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/contest1/example3-n1000-m1000.txt"));
-//             PrintWriter bw = new PrintWriter(new OutputStreamWriter(System.out))) {
-             PrintWriter bw = new PrintWriter(new FileWriter("src/main/resources/contest1/example3-out.txt"))) {
+        new SolutionPlainHeavy().doTask("src/main/resources/contest1/example3-n1000-m1000.txt", "src/main/resources/contest1/example3-out.txt");
+    }
+
+    public void doTask(String fileInput, String fileOutput) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileInput));
+             PrintWriter bw = new PrintWriter(new FileWriter(fileOutput))) {
             String s = br.readLine();
             String[] s1 = s.split(" ");
             int dataCenterNumbers = Integer.parseInt(s1[0]); //N
@@ -47,8 +49,6 @@ public class FirstContest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Date end = new Date();
-        System.out.println(end.getTime() - start.getTime());
     }
 
     private static int getMax(int[][] runningServers, int[] resetServersCount) {

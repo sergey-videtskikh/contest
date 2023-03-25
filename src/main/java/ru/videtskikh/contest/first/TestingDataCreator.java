@@ -1,16 +1,14 @@
-package ru.videtskikh;
+package ru.videtskikh.contest.first;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class ContestHelper {
+public class TestingDataCreator {
 
-    public static Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     public static void main(String[] args) {
         createTestFile("src/main/resources/contest1/example3-n1000-m1000.txt", 1000, 1000, 100_000);
@@ -18,7 +16,7 @@ public class ContestHelper {
         createTestFile("src/main/resources/contest1/example3-n1-m1_000_000.txt", 1, 1_000_000, 100_000);
     }
 
-    private static void createTestFile(String fileName, int n, int m, int q) {
+    public static void createTestFile(String fileName, int n, int m, int q) {
         try (PrintWriter pr = new PrintWriter(new FileWriter(fileName))) {
             pr.println(n + " " + m + " " + q);
             for (int i = 0; i < q; i++) {
@@ -42,8 +40,7 @@ public class ContestHelper {
     enum Action {
         RESET, DISABLE, GETMAX, GETMIN;
 
-        private static final List<Action> VALUES =
-                Collections.unmodifiableList(Arrays.asList(values()));
+        private static final List<Action> VALUES = List.of(values());
         private static final int SIZE = VALUES.size();
         private static final Random RANDOM = new Random();
 

@@ -1,15 +1,19 @@
-package ru.videtskikh;
+package ru.videtskikh.contest.first;
 
 import java.io.*;
-import java.util.Date;
 import java.util.function.BiPredicate;
 
-public class FirstContestSecondSolution {
+public class SolutionOptimized implements Solution {
+    public static final String FILE_INPUT = "src/main/resources/contest1/example3-n1000-m1000.txt";
+    public static final String FILE_OUTPUT = "src/main/resources/contest1/example3-out.txt";
+
     public static void main(String[] args) {
-        Date start = new Date();
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/contest1/example3-n1000-m1000.txt"));
-//             PrintWriter bw = new PrintWriter(new OutputStreamWriter(System.out))) {
-             PrintWriter bw = new PrintWriter(new FileWriter("src/main/resources/contest1/example3-out.txt"))) {
+        new SolutionOptimized().doTask(FILE_INPUT, FILE_OUTPUT);
+    }
+
+    public void doTask(String fileInput, String fileOutput) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileInput));
+             PrintWriter bw = new PrintWriter(new FileWriter(fileOutput))) {
             String s = br.readLine();
             String[] s1 = s.split(" ");
             int dataCenterNumbers = Integer.parseInt(s1[0]); //N
@@ -45,8 +49,6 @@ public class FirstContestSecondSolution {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Date end = new Date();
-        System.out.println(end.getTime() - start.getTime());
     }
 
     private static int getMaxIndex(int[] arr) {
