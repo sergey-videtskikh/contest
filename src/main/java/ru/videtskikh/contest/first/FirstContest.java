@@ -18,17 +18,17 @@ public class FirstContest {
         createTestFile(fileInput2, 1_000_000, 1, 100_000);
         createTestFile(fileInput3, 1, 1_000_000, 100_000);
 
-        SolutionArrayMinMax solutionArrayMinMax = new SolutionArrayMinMax();
+        Solution solution = new SolutionArrayMinMax();
 
         System.out.println("SolutionArrayMinMax:");
-        System.out.println(format("Первый тест: {0}мс", getTiming(solutionArrayMinMax, fileInput1, fileOutput3)));
-        System.out.println(format("Второй тест: {0}мс", getTiming(solutionArrayMinMax, fileInput2, fileOutput3)));
-        System.out.println(format("Третий тест: {0}мс", getTiming(solutionArrayMinMax, fileInput3, fileOutput3)));
-        System.out.println(format("Первый тест: {0}мс", getTiming(solutionArrayMinMax, fileInput1, fileOutput3)));
-        System.out.println(format("Второй тест: {0}мс", getTiming(solutionArrayMinMax, fileInput2, fileOutput3)));
-        System.out.println(format("Третий тест: {0}мс", getTiming(solutionArrayMinMax, fileInput3, fileOutput3)));
-        System.out.println(format("Проверочный тест: {0}мс", getTiming(solutionArrayMinMax, fileInputExample1, fileOutput1)));
-        System.out.println(format("Проверочный тест: {0}мс", getTiming(solutionArrayMinMax, fileInputExample2, fileOutput2)));
+        System.out.println(format("Первый тест: {0}мс", getTiming(solution, fileInput1, fileOutput3)));
+        System.out.println(format("Второй тест: {0}мс", getTiming(solution, fileInput2, fileOutput3)));
+        System.out.println(format("Третий тест: {0}мс", getTiming(solution, fileInput3, fileOutput3)));
+        System.out.println(format("Первый тест: {0}мс", getTiming(solution, fileInput1, fileOutput3)));
+        System.out.println(format("Второй тест: {0}мс", getTiming(solution, fileInput2, fileOutput3)));
+        System.out.println(format("Третий тест: {0}мс", getTiming(solution, fileInput3, fileOutput3)));
+        System.out.println(format("Проверочный тест: {0}мс", getTiming(solution, fileInputExample1, fileOutput1)));
+        System.out.println(format("Проверочный тест: {0}мс", getTiming(solution, fileInputExample2, fileOutput2)));
 
 //        Solution solutionPlainHeavy = new SolutionPlainHeavy();
 //        System.out.println("Решение не оптимальное:");
