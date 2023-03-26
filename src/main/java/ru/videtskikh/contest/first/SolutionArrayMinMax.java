@@ -32,7 +32,10 @@ public class SolutionArrayMinMax implements Solution {
                         int r = Integer.parseInt(s2[1]);
                         resetServersCount[r - 1] += 1;
                         ra.add(resetServersCount[r - 1] * serversNumber, r - 1);
-                        runningServers[r - 1] = new int[serversNumber];
+                        for (int j = 0; j < serversNumber; j++) {
+                            runningServers[r - 1][j] = 0;
+                        }
+                        //runningServers[r - 1] = new int[serversNumber]; этот вариант сброса приводит к 12с при n = 1; m = 1_000_000
                     }
                     case DISABLE -> {
                         int dN = Integer.parseInt(s2[1]);
@@ -87,19 +90,23 @@ public class SolutionArrayMinMax implements Solution {
             int maxE = 0;
             int minE = Integer.MAX_VALUE;
             for (int i = 0; i < arr.length; i++) {
-                if (arr[i] > maxE) {
+                if (!isMaxAvailable && arr[i] > maxE) {
                     maxE = arr[i];
                     maxI = i;
                 }
-                if (arr[i] < minE) {
+                if (!isMinAvailable && arr[i] < minE) {
                     minE = arr[i];
                     minI = i;
                 }
             }
-            maxIndex = maxI;
-            minIndex = minI;
-            isMaxAvailable = true;
-            isMinAvailable = true;
+            if (!isMaxAvailable) {
+                maxIndex = maxI;
+                isMaxAvailable = true;
+            }
+            if (!isMinAvailable) {
+                minIndex = minI;
+                isMinAvailable = true;
+            }
         }
 
         public void add(int value, int index) {
