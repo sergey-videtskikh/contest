@@ -99,7 +99,7 @@ public class SolutionPlainHeavy implements Solution {
         return arr;
     }
 
-    enum Action {
+    private enum Action {
         RESET, DISABLE, GETMAX, GETMIN
     }
 }

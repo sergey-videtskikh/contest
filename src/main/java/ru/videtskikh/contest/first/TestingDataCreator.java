@@ -37,7 +37,7 @@ public class TestingDataCreator {
         return RANDOM.nextInt(max + 1 - min) + min;
     }
 
-    enum Action {
+    private enum Action {
         RESET, DISABLE, GETMAX, GETMIN;
 
         private static final List<Action> VALUES = List.of(values());
