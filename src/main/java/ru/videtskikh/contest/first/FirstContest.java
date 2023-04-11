@@ -1,6 +1,7 @@
 package ru.videtskikh.contest.first;
 
 import static java.text.MessageFormat.format;
+import static ru.videtskikh.contest.Util.getTiming;
 import static ru.videtskikh.contest.first.TestingDataCreator.createTestFile;
 
 public class FirstContest {
@@ -20,6 +21,16 @@ public class FirstContest {
 //        System.out.println(format("Второй тест: {0}мс", getTiming(solutionPlainHeavy, fileInput2, fileOutput)));
 //        System.out.println(format("Третий тест: {0}мс", getTiming(solutionPlainHeavy, fileInput3, fileOutput)));
 
+        Solution aSolution = new A();
+        System.out.println("Решение на нодах:");
+        System.out.println(format("Первый тест: {0}мс", getTiming(aSolution, fileInput1, fileOutput)));
+        System.out.println(format("Второй тест: {0}мс", getTiming(aSolution, fileInput2, fileOutput)));
+        System.out.println(format("Третий тест: {0}мс", getTiming(aSolution, fileInput3, fileOutput)));
+        System.out.println("Решение на нодах:");
+        System.out.println(format("Первый тест: {0}мс", getTiming(aSolution, fileInput1, fileOutput)));
+        System.out.println(format("Второй тест: {0}мс", getTiming(aSolution, fileInput2, fileOutput)));
+        System.out.println(format("Третий тест: {0}мс", getTiming(aSolution, fileInput3, fileOutput)));
+
         Solution solutionOptimized = new SolutionOptimized();
         System.out.println("Решение оптимальное:");
         System.out.println(format("Первый тест: {0}мс", getTiming(solutionOptimized, fileInput1, fileOutput)));
@@ -33,11 +44,5 @@ public class FirstContest {
         System.out.println(format("Первый тест: {0}мс", getTiming(solutionOptimized, fileInput1, fileOutput)));
         System.out.println(format("Второй тест: {0}мс", getTiming(solutionOptimized, fileInput2, fileOutput)));
         System.out.println(format("Третий тест: {0}мс", getTiming(solutionOptimized, fileInput3, fileOutput)));
-    }
-
-    private static long getTiming(Solution solution, String fileInput, String fileOutput) {
-        long start = System.currentTimeMillis();
-        solution.doTask(fileInput, fileOutput);
-        return System.currentTimeMillis() - start;
     }
 }
